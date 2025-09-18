@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ServicesTabs from "../components/ServicesTabs";
+import AboutSection from "../components/AboutSection";
 
 export default function Home() {
   return (
@@ -42,6 +43,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* About Section */}
+      <AboutSection />
 
       {/* Services Tabs Section */}
       <section id="services" className="px-4 pb-16 pt-6 md:px-6">

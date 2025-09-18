@@ -10,10 +10,9 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-black/80 px-4 py-2 text-sm text-white shadow-lg backdrop-blur transition hover:border-[#25D366] hover:text-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/60"
+      className="fixed bottom-6 right-6 z-50 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-1 ring-black/30 transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
     >
-      <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
-      <span className="hidden sm:inline">WhatsApp</span>
+      <WhatsAppIcon className="h-7 w-7 text-white" />
     </a>
   );
 }

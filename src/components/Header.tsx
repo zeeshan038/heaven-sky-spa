@@ -18,9 +18,9 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#d4af37] text-black font-extrabold">M</span>
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#d4af37] text-black font-extrabold">HS</span>
           <span className="text-lg font-semibold tracking-wide">
-            My Spa
+            Heaven Sky Spa
             <span className="ml-2 hidden text-xs font-normal text-neutral-400 sm:inline">Massage & Spa</span>
           </span>
         </Link>
