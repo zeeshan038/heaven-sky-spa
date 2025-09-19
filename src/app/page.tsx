@@ -1,4 +1,3 @@
-import Image from "next/image";
 import ServicesTabs from "../components/ServicesTabs";
 import AboutSection from "../components/AboutSection";
 import Testimonials from "../components/Testimonials";

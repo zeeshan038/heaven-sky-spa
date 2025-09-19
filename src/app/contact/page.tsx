@@ -23,7 +23,7 @@ export default function ContactPage() {
                 Get in Touch
               </h1>
               <p className="mt-3 max-w-2xl text-base text-neutral-300 sm:text-lg">
-                We'd love to hear from you. Reach out via WhatsApp, phone, email, or the form below.
+                We\u2019d love to hear from you. Reach out via WhatsApp, phone, email, or the form below.
               </p>
             </div>
           </div>
