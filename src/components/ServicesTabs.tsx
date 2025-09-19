@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Service = {
   key: string;
@@ -15,8 +15,7 @@ const SERVICES: Service[] = [
   {
     key: "swedish",
     name: "Swedish Massage",
-    image:
-      "https://images.unsplash.com/photo-1556228724-4e4474d1f0c5?q=80&w=1600&auto=format&fit=crop",
+    image: "/swedish-massage.jpeg",
     description:
       "Gentle, flowing strokes to promote relaxation, ease tension, and improve circulation.",
     bullets: [
@@ -26,159 +25,197 @@ const SERVICES: Service[] = [
       "Better sleep",
     ],
     pricing: [
-      { label: "60 min", price: "$150" },
+      { label: "60 min", price: "AED 150" },
     ],
   },
   {
     key: "deep-tissue",
     name: "Deep Tissue Massage",
-    image:
-      "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=1600&auto=format&fit=crop",
+    image: "/deep-tissue-massage.jpeg",
     description:
       "Targets deeper muscle layers to release chronic tension and knots.",
     bullets: ["Releases knots", "Posture support", "Pain relief", "Mobility"],
-    pricing: [{ label: "60 min", price: "$150" }],
+    pricing: [{ label: "60 min", price: "AED 150" }],
   },
   {
     key: "back",
     name: "Back Massage",
-    image:
-      "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=1600&auto=format&fit=crop",
+    image: "/back-massage.jpeg",
     description:
       "Focused treatment for upper, mid, and lower back to relieve stiffness and fatigue.",
     bullets: ["Neck & shoulder relief", "Tension release", "Quick refresh"],
-    pricing: [{ label: "30 min", price: "$100" }],
+    pricing: [{ label: "30 min", price: "AED 100" }],
   },
   {
     key: "reflexology",
     name: "Reflexology",
-    image:
-      "https://images.unsplash.com/photo-1556228453-efd1a5f58e8f?q=80&w=1600&auto=format&fit=crop",
+    image: "/reflexology.jpeg",
     description:
       "Pressure-point foot therapy to stimulate energy pathways and restore balance.",
     bullets: ["Foot rejuvenation", "Energy balance", "Stress relief"],
-    pricing: [{ label: "60 min", price: "$170" }],
+    pricing: [{ label: "60 min", price: "AED 170" }],
   },
   {
     key: "thai",
     name: "Thai Massage",
-    image:
-      "https://images.unsplash.com/photo-1591369822095-1b2e9b5a4f5f?q=80&w=1600&auto=format&fit=crop",
+    image: "/thai-massage.jpeg",
     description:
       "Yoga-like stretches and acupressure to enhance flexibility and vitality.",
     bullets: ["Flexibility", "Energy flow", "Mobility"],
-    pricing: [{ label: "60 min", price: "$170" }],
+    pricing: [{ label: "60 min", price: "AED 170" }],
   },
   {
     key: "full-body",
     name: "Full Body Massage",
-    image:
-      "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop",
+    image: "/Full-body-massage.jpeg",
     description:
       "Head-to-toe relaxation tailored to your preferred pressure.",
     bullets: ["Full-body relaxation", "Circulation", "Calm mind"],
     pricing: [
-      { label: "60 min", price: "$150" },
-      { label: "90 min", price: "$200" },
+      { label: "60 min", price: "AED 150" },
+      { label: "90 min", price: "AED 200" },
     ],
   },
   {
     key: "cupping",
     name: "Full Body with Cupping",
-    image:
-      "https://images.unsplash.com/photo-1512427691650-5fed1f525d1d?q=80&w=1600&auto=format&fit=crop",
+    image: "/full-body-massage-cupping.jpeg",
     description:
       "Combines massage with cupping therapy to boost circulation and recovery.",
     bullets: ["Recovery", "Detox support", "Relieves tightness"],
-    pricing: [{ label: "60 min", price: "$170" }],
+    pricing: [{ label: "60 min", price: "AED 170" }],
   },
   {
     key: "hot-stone",
     name: "Full Body with Hot Stone",
-    image:
-      "https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?q=80&w=1600&auto=format&fit=crop",
+    image: "/massage-with-hotstone.jpeg",
     description:
       "Heated stones melt away tension and improve circulation.",
     bullets: ["Deep warmth", "Relaxation", "Stress relief"],
-    pricing: [{ label: "60 min", price: "$170" }],
+    pricing: [{ label: "60 min", price: "AED 170" }],
   },
   {
     key: "face-facial",
     name: "Face Massage with Facial",
-    image:
-      "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?q=80&w=1600&auto=format&fit=crop",
+    image: "/face-massage-with-facial.jpg",
     description:
       "Glow-boosting face massage combined with a refreshing facial routine.",
     bullets: ["Glow", "Lymphatic boost", "Relaxing"],
-    pricing: [{ label: "60 min", price: "$150" }],
+    pricing: [{ label: "60 min", price: "AED 150" }],
   },
   {
     key: "mani-pedi",
     name: "Manipedi with Foot Spa & Legs Massage",
-    image:
-      "https://images.unsplash.com/photo-1582582429416-1f89a4b8cd7e?q=80&w=1600&auto=format&fit=crop",
+    image: "/meni%20pedi%20with%20foot%20spa%20and%20leg%20massage.webp",
     description:
       "Complete nail care with soothing foot spa and leg massage.",
     bullets: ["Clean & care", "Polish", "Relaxing"],
-    pricing: [{ label: "60 min", price: "$150" }],
+    pricing: [{ label: "60 min", price: "AED 150" }],
   },
   {
     key: "bikini-wax-arm",
     name: "Full Body with Bikini Waxing & Arm",
-    image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop",
+    image: "/full%20body%20massage%20with%20biknni%20waxinng%20and%20arm.webp",
     description:
       "Comprehensive body massage paired with selected waxing for a polished feel.",
     bullets: ["Smooth feel", "Relax + Groom", "Confidence"],
-    pricing: [{ label: "60 min", price: "$200" }],
+    pricing: [{ label: "60 min", price: "AED 200" }],
   },
   {
     key: "soul-bikini",
     name: "Soul Massage with Bikini Waxing",
-    image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1600&auto=format&fit=crop",
+    image: "/soul-massage.webp",
     description:
       "Holistic relaxation focused on mind-body balance plus select waxing.",
     bullets: ["Holistic", "Soothing", "Balance"],
-    pricing: [{ label: "60 min", price: "$150" }],
+    pricing: [{ label: "60 min", price: "AED 150" }],
   },
   {
     key: "foot",
     name: "Foot Massage",
-    image:
-      "https://images.unsplash.com/photo-1599059814795-9fbee8b29804?q=80&w=1600&auto=format&fit=crop",
+    image: "/foot-massage.jpeg",
     description:
       "Releases tension and heaviness from feet and calves.",
     bullets: ["Circulation", "Light legs", "Stress relief"],
-    pricing: [{ label: "30 min", price: "$100" }],
+    pricing: [{ label: "30 min", price: "AED 100" }],
   },
   {
     key: "bikini-hips",
     name: "Bikini Area & Hips Massage",
-    image:
-      "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=1600&auto=format&fit=crop",
+    image: "/hips-masaage.jpg",
     description:
       "Delicate, focused work to release hip-area tightness and improve comfort.",
     bullets: ["Hip mobility", "Comfort", "Gentle focus"],
-    pricing: [{ label: "30 min", price: "$100" }],
+    pricing: [{ label: "30 min", price: "AED 100" }],
   },
   {
     key: "nail-polish",
     name: "Nail Polish with Foot Spa",
-    image:
-      "https://images.unsplash.com/photo-1556228453-efd1a5f58e8f?q=80&w=1600&auto=format&fit=crop",
+    image: "/nail-polish-with-foot-spa.jpeg",
     description:
       "Refreshing foot spa followed by neat polish for a clean finish.",
     bullets: ["Neat polish", "Spa cleanse", "Feel-good"],
-    pricing: [{ label: "", price: "$200" }],
+    pricing: [{ label: "", price: "AED 200" }],
   },
 ];
 
 export default function ServicesTabs() {
   const [active, setActive] = useState<string>(SERVICES[0].key);
   const current = SERVICES.find((s) => s.key === active)!;
+  const [bookingService, setBookingService] = useState<Service | null>(null);
+
+  // Pick initial tab from URL: supports `/#services?s=<key>` or `?s=<key>`
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const applyFromUrl = () => {
+      let keyFromUrl: string | null = null;
+      const hash = window.location.hash || ""; // e.g. #services?s=thai
+      const qIndex = hash.indexOf("?");
+      if (qIndex !== -1) {
+        const hashQuery = hash.substring(qIndex + 1);
+        const params = new URLSearchParams(hashQuery);
+        keyFromUrl = params.get("s");
+      }
+      if (!keyFromUrl) {
+        const params = new URLSearchParams(window.location.search);
+        keyFromUrl = params.get("s");
+      }
+      if (keyFromUrl && SERVICES.some((s) => s.key === keyFromUrl)) {
+        setActive(keyFromUrl);
+      }
+    };
+
+    // Run once now
+    applyFromUrl();
+
+    // Listen for URL changes while staying on the same page
+    window.addEventListener("hashchange", applyFromUrl);
+    window.addEventListener("popstate", applyFromUrl);
+    return () => {
+      window.removeEventListener("hashchange", applyFromUrl);
+      window.removeEventListener("popstate", applyFromUrl);
+    };
+  }, []);
+
+  const openBooking = (service: Service) => {
+    setBookingService(service);
+  };
+
+  const startWhatsApp = (gender: "Male" | "Female") => {
+    if (!bookingService) return;
+    const phone = "971567422137"; // from FloatingWhatsApp
+    const duration = bookingService.pricing?.[0]?.label || "";
+    const text = encodeURIComponent(
+      `Hello, I would like to book ${bookingService.name}${duration ? ` (${duration})` : ""} with a ${gender} therapist.`
+    );
+    const url = `https://wa.me/${phone}?text=${text}`;
+    window.open(url, "_blank");
+    setBookingService(null);
+  };
 
   return (
+    <>
     <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
       {/* Mobile horizontal menu */}
       <div className="md:hidden">
@@ -259,17 +296,48 @@ export default function ServicesTabs() {
               </div>
 
               <div className="mt-6">
-                <a
-                  href="#book"
+                <button
+                  onClick={() => openBooking(current)}
                   className="inline-flex items-center rounded-full bg-[#d4af37] px-5 py-2.5 text-sm font-semibold text-black shadow hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4af37]/70"
                 >
                   Book now
-                </a>
+                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
     </div>
+
+    {/* Booking Modal */}
+    {bookingService && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+        <div className="w-full max-w-sm rounded-2xl border border-neutral-800 bg-neutral-950 p-5 shadow-xl">
+          <h4 className="text-lg font-semibold text-white">Choose therapist</h4>
+          <p className="mt-1 text-sm text-neutral-400">You are booking: {bookingService?.name}</p>
+          <div className="mt-4 flex items-center gap-3">
+            <button
+              onClick={() => startWhatsApp("Male")}
+              className="flex-1 rounded-md border border-neutral-800 bg-black px-4 py-2 text-sm text-neutral-200 hover:border-[#d4af37] hover:text-[#d4af37]"
+            >
+              Male
+            </button>
+            <button
+              onClick={() => startWhatsApp("Female")}
+              className="flex-1 rounded-md border border-neutral-800 bg-black px-4 py-2 text-sm text-neutral-200 hover:border-[#d4af37] hover:text-[#d4af37]"
+            >
+              Female
+            </button>
+          </div>
+          <button
+            onClick={() => setBookingService(null)}
+            className="mt-4 w-full rounded-md border border-neutral-800 px-4 py-2 text-xs text-neutral-400 hover:border-neutral-700"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

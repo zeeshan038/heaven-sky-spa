@@ -1,6 +1,8 @@
 import Image from "next/image";
 import ServicesTabs from "../components/ServicesTabs";
 import AboutSection from "../components/AboutSection";
+import Testimonials from "../components/Testimonials";
+import FAQs from "../components/FAQs";
 
 export default function Home() {
   return (
@@ -57,6 +59,12 @@ export default function Home() {
           <ServicesTabs />
         </div>
       </section>
+
+      {/* Testimonials */}
+      <Testimonials />
+
+      {/* FAQs */}
+      <FAQs />
     </main>
   );
 }

@@ -7,6 +7,21 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
+  const handleServiceSelect = (key: string) => {
+    if (typeof window === "undefined") return;
+    const url = `/#services?s=${key}`;
+    if (window.location.pathname === "/") {
+      // Update hash and smooth scroll
+      window.location.hash = `#services?s=${key}`;
+      const el = document.getElementById("services");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = url;
+    }
+    setOpenMenu(null);
+    setMobileOpen(false);
+  };
+
   const navItemBase =
     "px-3 py-2 text-sm font-medium transition-colors hover:text-[#d4af37]";
 
@@ -20,7 +35,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-[#d4af37] text-black font-extrabold">HS</span>
           <span className="text-lg font-semibold tracking-wide">
-            Heaven Sky Spa
+            SERENA AMORE HAVEN SPA
             <span className="ml-2 hidden text-xs font-normal text-neutral-400 sm:inline">Massage & Spa</span>
           </span>
         </Link>
@@ -35,35 +50,42 @@ export default function Header() {
               <ChevronDown className="h-4 w-4" />
             </button>
             {openMenu === "massages" && (
-              <div className="absolute left-0 mt-2 w-52 overflow-hidden rounded-md border border-neutral-800 bg-black shadow-lg">
-                <Link href="#swedish" className={dropdownLink}>Swedish Massage</Link>
-                <Link href="#deep" className={dropdownLink}>Deep Tissue</Link>
-                <Link href="#hot-stone" className={dropdownLink}>Hot Stone</Link>
+              <div className="absolute left-0 mt-2 w-64 overflow-hidden rounded-md border border-neutral-800 bg-black shadow-lg">
+                <div className="max-h-80 overflow-auto py-1">
+                  <button onClick={() => handleServiceSelect("swedish")} className={dropdownLink + " w-full text-left"}>Swedish Massage</button>
+                  <button onClick={() => handleServiceSelect("deep-tissue")} className={dropdownLink + " w-full text-left"}>Deep Tissue Massage</button>
+                  <button onClick={() => handleServiceSelect("back")} className={dropdownLink + " w-full text-left"}>Back Massage</button>
+                  <button onClick={() => handleServiceSelect("reflexology")} className={dropdownLink + " w-full text-left"}>Reflexology</button>
+                  <button onClick={() => handleServiceSelect("thai")} className={dropdownLink + " w-full text-left"}>Thai Massage</button>
+                  <button onClick={() => handleServiceSelect("full-body")} className={dropdownLink + " w-full text-left"}>Full Body Massage</button>
+                  <button onClick={() => handleServiceSelect("cupping")} className={dropdownLink + " w-full text-left"}>Full Body with Cupping</button>
+                  <button onClick={() => handleServiceSelect("hot-stone")} className={dropdownLink + " w-full text-left"}>Full Body with Hot Stone</button>
+                  <button onClick={() => handleServiceSelect("face-facial")} className={dropdownLink + " w-full text-left"}>Face Massage with Facial</button>
+                  <button onClick={() => handleServiceSelect("mani-pedi")} className={dropdownLink + " w-full text-left"}>Manipedi with Foot Spa & Legs Massage</button>
+                  <button onClick={() => handleServiceSelect("bikini-wax-arm")} className={dropdownLink + " w-full text-left"}>Full Body with Bikini Waxing & Arm</button>
+                  <button onClick={() => handleServiceSelect("soul-bikini")} className={dropdownLink + " w-full text-left"}>Soul Massage with Bikini Waxing</button>
+                  <button onClick={() => handleServiceSelect("foot")} className={dropdownLink + " w-full text-left"}>Foot Massage</button>
+                  <button onClick={() => handleServiceSelect("bikini-hips")} className={dropdownLink + " w-full text-left"}>Bikini Area & Hips Massage</button>
+                  <button onClick={() => handleServiceSelect("nail-polish")} className={dropdownLink + " w-full text-left"}>Nail Polish with Foot Spa</button>
+                </div>
               </div>
             )}
           </div>
 
-          <Link href="#studio" className={navItemBase}>Studio</Link>
+          
 
           <div className="relative"
                onMouseEnter={() => setOpenMenu("about")}
                onMouseLeave={() => setOpenMenu(null)}>
             <button className={`${navItemBase} inline-flex items-center gap-1`}>
               About
-              <ChevronDown className="h-4 w-4" />
+     
             </button>
-            {openMenu === "about" && (
-              <div className="absolute left-0 mt-2 w-48 overflow-hidden rounded-md border border-neutral-800 bg-black shadow-lg">
-                <Link href="#story" className={dropdownLink}>Our Story</Link>
-                <Link href="#team" className={dropdownLink}>Therapists</Link>
-                <Link href="#careers" className={dropdownLink}>Careers</Link>
-              </div>
-            )}
+           
           </div>
 
-          <Link href="#gallery" className={navItemBase}>Gallery</Link>
-          <Link href="#news" className={navItemBase}>News</Link>
-          <Link href="#contact" className={`${navItemBase} text-[#d4af37]`}>Contact</Link>
+       
+          <Link href="/contact" className={`${navItemBase} text-[#d4af37]`}>Contact</Link>
         </nav>
 
         {/* Right actions */}
@@ -97,27 +119,33 @@ export default function Header() {
                 <span>Massages</span>
                 <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
               </summary>
-              <div className="pl-3 pb-3 text-sm">
-                <Link href="#swedish" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Swedish Massage</Link>
-                <Link href="#deep" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Deep Tissue</Link>
-                <Link href="#hot-stone" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Hot Stone</Link>
+              <div className="pl-3 pb-3 text-sm max-h-72 overflow-auto pr-2">
+                <button onClick={() => handleServiceSelect("swedish")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Swedish Massage</button>
+                <button onClick={() => handleServiceSelect("deep-tissue")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Deep Tissue Massage</button>
+                <button onClick={() => handleServiceSelect("back")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Back Massage</button>
+                <button onClick={() => handleServiceSelect("reflexology")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Reflexology</button>
+                <button onClick={() => handleServiceSelect("thai")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Thai Massage</button>
+                <button onClick={() => handleServiceSelect("full-body")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Full Body Massage</button>
+                <button onClick={() => handleServiceSelect("cupping")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Full Body with Cupping</button>
+                <button onClick={() => handleServiceSelect("hot-stone")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Full Body with Hot Stone</button>
+                <button onClick={() => handleServiceSelect("face-facial")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Face Massage with Facial</button>
+                <button onClick={() => handleServiceSelect("mani-pedi")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Manipedi with Foot Spa & Legs Massage</button>
+                <button onClick={() => handleServiceSelect("bikini-wax-arm")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Full Body with Bikini Waxing & Arm</button>
+                <button onClick={() => handleServiceSelect("soul-bikini")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Soul Massage with Bikini Waxing</button>
+                <button onClick={() => handleServiceSelect("foot")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Foot Massage</button>
+                <button onClick={() => handleServiceSelect("bikini-hips")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Bikini Area & Hips Massage</button>
+                <button onClick={() => handleServiceSelect("nail-polish")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Nail Polish with Foot Spa</button>
               </div>
             </details>
-            <Link href="#studio" className="block py-2 text-sm hover:text-[#d4af37]">Studio</Link>
+
             <details className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm font-medium hover:text-[#d4af37]">
                 <span>About</span>
                 <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
               </summary>
-              <div className="pl-3 pb-3 text-sm">
-                <Link href="#story" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Our Story</Link>
-                <Link href="#team" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Therapists</Link>
-                <Link href="#careers" className="block py-1.5 text-neutral-300 hover:text-[#d4af37]">Careers</Link>
-              </div>
+      
             </details>
-            <Link href="#gallery" className="block py-2 text-sm hover:text-[#d4af37]">Gallery</Link>
-            <Link href="#news" className="block py-2 text-sm hover:text-[#d4af37]">News</Link>
-            <Link href="#contact" className="block py-2 text-sm text-[#d4af37]">Contact</Link>
+            <Link href="/contact" className="block py-2 text-sm text-[#d4af37]">Contact</Link>
 
             <div className="mt-3 flex items-center gap-3">
               <a href="tel:+123456789" className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-neutral-800 px-3 py-2 text-sm hover:border-[#d4af37] hover:text-[#d4af37]">
