@@ -22,6 +22,21 @@ export default function Header() {
     setMobileOpen(false);
   };
 
+  const handleAboutClick = () => {
+    if (typeof window === "undefined") return;
+    const url = "/#about";
+    if (window.location.pathname === "/") {
+      // Update hash and smooth scroll to About section
+      window.location.hash = "#about";
+      const el = document.getElementById("about");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.location.href = url;
+    }
+    setOpenMenu(null);
+    setMobileOpen(false);
+  };
+
   const navItemBase =
     "px-3 py-2 text-sm font-medium transition-colors hover:text-[#d4af37]";
 
@@ -77,9 +92,9 @@ export default function Header() {
           <div className="relative"
                onMouseEnter={() => setOpenMenu("about")}
                onMouseLeave={() => setOpenMenu(null)}>
-            <button className={`${navItemBase} inline-flex items-center gap-1`}>
+            <button onClick={handleAboutClick} className={`${navItemBase} inline-flex items-center gap-1`}>
               About
-     
+    
             </button>
            
           </div>
@@ -137,14 +152,7 @@ export default function Header() {
                 <button onClick={() => handleServiceSelect("nail-polish")} className="block w-full py-1.5 text-left text-neutral-300 hover:text-[#d4af37]">Nail Polish with Foot Spa</button>
               </div>
             </details>
-
-            <details className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between py-2 text-sm font-medium hover:text-[#d4af37]">
-                <span>About</span>
-                <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-              </summary>
-      
-            </details>
+            <button onClick={handleAboutClick} className="block w-full py-2 text-left text-sm text-neutral-300 hover:text-[#d4af37]">About</button>
             <Link href="/contact" className="block py-2 text-sm text-[#d4af37]">Contact</Link>
 
             <div className="mt-3 flex items-center gap-3">
