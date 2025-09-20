@@ -160,7 +160,7 @@ export default function Header() {
                 <PhoneIcon className="h-4 w-4 text-[#d4af37]" />
                 <span>Call</span>
               </a>
-              <a href="mailto:info@myspa.com" className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-neutral-800 px-3 py-2 text-sm hover:border-[#d4af37] hover:text-[#d4af37]">
+              <a href="mailto:serenaamorehavenspa@gmail.com" className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-neutral-800 px-3 py-2 text-sm hover:border-[#d4af37] hover:text-[#d4af37]">
                 <MailIcon className="h-4 w-4 text-[#d4af37]" />
                 <span>Email</span>
               </a>
