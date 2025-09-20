@@ -29,7 +29,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white">Contact</h4>
             <ul className="mt-3 space-y-2 text-sm text-neutral-400">
               <li>WhatsApp: +971 56 742 2137</li>
-              <li>Email: info@myspa.com</li>
+              <li>Email: serenaamorehavenspa@gmail.com</li>
             </ul>
           </div>
 
